@@ -1,25 +1,22 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import React, { Component } from 'react';
+import Navbar from './components/Navbar';
+import News from './components/News';
+// article regarding keys and lists in react
+// https://reactjs.org/docs/lists-and-keys.html
+export default class App extends Component {
+    a="durgesh";
+    render() {
+        return (
+            <>
+            <Navbar/>
+            <div className="container">
+                <News pageSize={5}/>
+            </div>
+            </>
+        )
+    }
 }
 
-export default App;
+
