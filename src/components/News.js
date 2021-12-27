@@ -14,13 +14,17 @@ export default class News extends Component {
         country:PropTypes.string,
         pageSize:PropTypes.number
     }
-    constructor(){
-        super();
+    capitalize=(string)=> {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    constructor(props){
+        super(props);
         this.state={
             articles:[],
             loading:false,
             page:1
         }
+        document.title=`${this.capitalize(this.props.category)} - NewsMonkey`;
     }
     updateNews=async ()=>{
         let url=`https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=89aff8ae38284d13aad285f81ab111d7&page=${this.state.page}&pageSize=${this.props.pageSize}`;
@@ -51,7 +55,7 @@ export default class News extends Component {
     render() {
         return (
             <div className="container my-3">
-                <h1 className="text-center">NewsMonkey- Top Headlines</h1>
+                <h1 className="text-center">NewsMonkey- Top {this.capitalize(this.props.category)} Headlines </h1>
                 {this.state.loading && <Spinner/>}
                 <h3>Page-{this.state.page}/{Math.ceil(this.state.totalResults/this.props.pageSize)}</h3>
                 <div className="row">
